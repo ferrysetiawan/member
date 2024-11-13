@@ -163,4 +163,32 @@ class CustomerController extends Controller
             ]);
         }
     }
+
+    public function getCustomersForSelect2(Request $request)
+    {
+        $search = $request->input('search');
+
+        // Ambil data berdasarkan pencarian
+        $customers = Customer::where('nama_pelanggan', 'like', "%{$search}%")
+            ->orWhere('no_telp', 'like', "%{$search}%")
+            ->orWhere('alamat', 'like', "%{$search}%")
+            ->limit(10) // Batasi jumlah hasil untuk performa
+            ->get();
+
+        // Format data untuk Select2
+        $formatted_customers = [];
+        foreach ($customers as $customer) {
+            $formatted_customers[] = [
+                'id' => $customer->id,
+                'nama_pelanggan' => $customer->nama_pelanggan, // Menambahkan nama_pelanggan
+                'text' => $customer->nama_pelanggan, // Menampilkan hanya nama_pelanggan di pencarian
+                'phone' => $customer->no_telp, // Menambahkan nomor telepon
+                'address' => $customer->alamat // Menambahkan alamat
+            ];
+        }
+
+        return response()->json($formatted_customers);
+    }
+
+
 }

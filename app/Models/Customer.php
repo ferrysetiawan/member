@@ -15,4 +15,9 @@ class Customer extends Model
         'no_telp',
         'email',
     ];
+
+    public function r01a()
+    {
+        return $this->hasMany(R01A::class);
+    }
 }

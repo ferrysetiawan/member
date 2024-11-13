@@ -10,6 +10,14 @@
         <li class="{{ request()->is('data-customer*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Data Customer</span></a>
         </li>
+        <li class="menu-header">MASTER DATA</li>
+        <li class="{{ request()->is('') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-list"></i> <span>Kategori Menu</span></a>
+        </li>
+        <li class="menu-header">CUSTOMER ENGAGEMENT</li>
+        <li class="{{ request()->is('customer-engagement/r01a*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('r01a.index') }}"><i class="fas fa-users"></i> <span>RO1.A</span></a>
+        </li>
         {{-- <li class="menu-header">Master Data</li>
         <li class="{{ request()->is('dashboard/kriteria*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('kriteria.index') }}"><i class="fas fa-list"></i> <span>Kriteria</span></a>
